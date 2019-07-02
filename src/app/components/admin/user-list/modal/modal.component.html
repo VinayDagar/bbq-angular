@@ -1,0 +1,105 @@
+<form nz-form>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzFor="user">User</nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <nz-select
+        name="user"
+        style="width: 100%"
+        [(ngModel)]="selectedUser"
+        nzShowSearch
+        nzPlaceHolder="Please select an user"
+      >
+        <nz-option
+          *ngFor="let user of users"
+          [nzLabel]="userLabel(user)"
+          [nzValue]="user"
+        ></nz-option>
+      </nz-select>
+    </nz-form-control>
+    <nz-form-label [nzSpan]="6" nzFor="role">Role</nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <nz-select name="role" style="width: 200px;" [(ngModel)]="selectedRole">
+        <nz-option
+          *ngFor="let role of roles"
+          [nzLabel]="role.name"
+          [nzValue]="role"
+        ></nz-option>
+      </nz-select>
+    </nz-form-control>
+    <nz-form-label [nzSpan]="6" nzFor="type">Type</nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <nz-radio-group name="type" [(ngModel)]="type">
+        <label nz-radio [ngStyle]="style" nzValue="sourcing">IS Sourcing</label>
+        <label nz-radio [ngStyle]="style" nzValue="coorporate_sourcing"
+          >IS Coorporate Sourcing</label
+        >
+        <label nz-radio [ngStyle]="style" nzValue="mdm">IS MDM</label>
+      </nz-radio-group>
+    </nz-form-control>
+    <span
+      *ngIf="
+        selectedRole && selectedRole.name === 'sourcing' && type === 'sourcing'
+      "
+    >
+      <nz-form-label [nzSpan]="6" nzFor="super_category"
+        >Super Category</nz-form-label
+      >
+      <nz-form-control [nzSpan]="14">
+        <nz-select
+          name="super_category"
+          style="width: 200px;"
+          [(ngModel)]="selectedSuperCategory"
+        >
+          <nz-option
+            *ngFor="let supercategory of supercategories"
+            [nzLabel]="supercategory.name"
+            [nzValue]="supercategory"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+      <nz-form-label [nzSpan]="6" nzFor="region">Regions</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <nz-select
+          name="region"
+          style="width: 100%"
+          [(ngModel)]="selectedRegions"
+          nzMode="multiple"
+          nzPlaceHolder="Please select"
+        >
+          <nz-option
+            *ngFor="let region of regions"
+            [nzLabel]="region.name"
+            [nzValue]="region"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+      <nz-form-label [nzSpan]="6" nzFor="region">Areas</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <nz-select
+          name="area"
+          style="width: 100%"
+          [(ngModel)]="selectedAreas"
+          nzMode="multiple"
+          nzPlaceHolder="Please select"
+        >
+          <nz-option
+            *ngFor="let area of areas"
+            [nzLabel]="area.name"
+            [nzValue]="area.id"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </span>
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <button
+        type="submit"
+        (click)="save()"
+        [disabled]="!selectedUser || !selectedRole"
+        nz-button
+        nzType="primary"
+      >
+        {{ mode === "edit" ? "Update" : "Add" }}
+      </button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

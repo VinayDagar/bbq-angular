@@ -1,0 +1,38 @@
+<nz-table
+  #dataTable
+  [(nzPageSize)]="pageSize"
+  (nzPageIndexChange)="getData()"
+  [nzData]="userData"
+>
+  <thead (nzSortChange)="sort($event)" nzSingleSort>
+    <tr>
+      <th *ngFor="let item of headers" nzShowSort nzSortKey="item.value">
+        <span>{{ item.text }}</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of dataTable.data">
+      <td>{{ data.userName }}</td>
+      <td>{{ data.fullName }}</td>
+      <td>{{ data.role.name }}</td>
+      <td>{{ data.sourcingType }}</td>
+      <td>
+        {{
+          data.superCategory && data.superCategory.MstSuperCategory
+            ? data.superCategory.MstSuperCategory.name
+            : "NA"
+        }}
+      </td>
+      <td>{{ data.region }}</td>
+      <td>
+        <mat-icon
+          aria-hidden="false"
+          (click)="createModal()"
+          aria-label="Example home icon"
+          >edit</mat-icon
+        >
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

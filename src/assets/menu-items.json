@@ -1,0 +1,125 @@
+[{
+        "title": "Dashboard",
+        "icon": "el-icon-menu",
+        "route": "dashboard",
+        "showTo": ["isVendor"]
+    },
+    {
+        "title": "Profile",
+        "icon": "el-icon-user-solid",
+        "route": "vendor.profile",
+        "showTo": ["isVendor"]
+    },
+    {
+        "title": "Contract",
+        "icon": "el-icon-s-cooperation",
+        "route": "vendor.contract",
+        "showTo": ["isVendor"]
+    },
+    {
+        "title": "Ledger",
+        "icon": "fa fa-inr",
+        "route": "vendor.finance",
+        "showTo": ["isVendor"]
+    },
+    {
+        "title": "Setting",
+        "icon": "el-icon-setting",
+        "route": "vendor.setting",
+        "showTo": ["isVendor"]
+    },
+    {
+        "title": "Manage Survey",
+        "route": "bd.survey.list",
+        "icon": "el-icon-location",
+        "showTo": ["isCO", "isBD"]
+    },
+    {
+        "title": "Survey Status",
+        "route": "bd.survey.status.list",
+        "icon": "el-icon-location",
+        "showTo": ["isCO", "isBD"]
+    },
+    {
+        "title": "BD Management",
+        "icon": "el-icon-location",
+        "submenus": [{
+                "title": "Manage Question Category",
+                "route": "bd.category.list"
+            },
+            {
+                "title": "Manage Question",
+                "route": "bd.question.list"
+            },
+            {
+                "title": "Manage Project",
+                "route": "bd.survey.list"
+            },
+            {
+                "title": "Project Status",
+                "route": "bd.survey.status.list"
+            }
+        ]
+    },
+    {
+        "title": "Vendor Management",
+        "icon": "el-icon-setting",
+        "showTo": ["isSourcingTeam", "isCoorporateSourcingTeam", "isMDM","isSuperAdmin"],
+        "submenus": [{
+            "title": "Manage Vendor",
+            "route": "admin.vendor.list",
+            "disabled": false,
+            "showTo": ["isSourcingTeam", "isCoorporateSourcingTeam", "isMDM","isSuperAdmin"]
+        }]
+    },
+    {
+        "title": "Contract Management",
+        "icon": "el-icon-s-cooperation",
+        "showTo": ["isSourcingTeam", "isCoorporateSourcingTeam", "isMDM","isSuperAdmin"],
+        "submenus": [
+            {
+                "title": "New / Renew Contract",
+                "route": "admin.contract.create",
+                "disabled": false,
+                "showTo": ["isSourcingTeam", "isCoorporateSourcingTeam"]
+            },
+            {
+                "title": "New / Renew Contract Static",
+                "route": "admin.contract.create.static",
+                "showTo": [""]
+            },
+            {
+                "title": "Manage Template",
+                "route": "admin.templete.create",
+                "disabled": false,
+                "showTo": ["isSourcingTeam", "isCoorporateSourcingTeam", "isMDM","isSuperAdmin"]
+            },
+            {
+                "title": "Contract History",
+                "route": "admin.contract.history",
+                "disabled": false,
+                "showTo": ["isSourcingTeam", "isCoorporateSourcingTeam", "isMDM","isSuperAdmin"]
+            }
+        ]
+    },
+    {
+        "title": "User Management",
+        "icon": "el-icon-user",
+        "submenus": [{
+                "title": "Manage User",
+                "route": "admin/user-list",
+                "disabled": false
+            },
+            {
+                "title": "Manage Role",
+                "route": "admin/role-list",
+                "disabled": false
+            },
+            {
+                "title": "Logs",
+                "route": "admin/logs-list",
+                "disabled": false
+            }
+        ]
+    }
+]

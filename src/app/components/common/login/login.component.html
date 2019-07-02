@@ -1,0 +1,13 @@
+<mat-card>
+    <mat-card-title>BBQ</mat-card-title>
+    <mat-card-content>
+        <mat-form-field>
+            <input matInput [(ngModel)]="user.username" placeholder="Username" required />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="user.password" placeholder="Enter your password" type="password" />
+        </mat-form-field>
+        <button mat-raised-button (click)="_login()" color="accent">Login</button>
+    </mat-card-content>
+    <mat-card-subtitle>Forgot password?</mat-card-subtitle>
+</mat-card>
