@@ -1,1 +1,29 @@
-<p>role-list works!</p>
+<button nz-button (click)="createModal('add')" type="submit">Add Role</button>
+<nz-table
+  #dataTable
+  [(nzPageSize)]="pageSize"
+  (nzPageIndexChange)="getData()"
+  [nzData]="items"
+>
+  <thead (nzSortChange)="sort($event)" nzSingleSort>
+    <tr>
+      <th *ngFor="let item of headers" nzShowSort nzSortKey="item.value">
+        <span>{{ item.text }}</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of dataTable.data">
+      <td>{{ data.label }}</td>
+      <td>{{ parsePermission(data.permission) }}</td>
+      <td style="cursor: pointer;">
+        <mat-icon
+          aria-hidden="false"
+          (click)="createModal('edit', data)"
+          aria-label="Example home icon"
+          >edit</mat-icon
+        >
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

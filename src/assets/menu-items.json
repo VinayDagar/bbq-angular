@@ -1,123 +1,127 @@
-[{
+[
+    {
         "title": "Dashboard",
         "icon": "el-icon-menu",
         "route": "dashboard",
-        "showTo": ["isVendor"]
+        "showTo": "isVendor"
     },
     {
         "title": "Profile",
         "icon": "el-icon-user-solid",
-        "route": "vendor.profile",
-        "showTo": ["isVendor"]
+        "route": "vendor-profile",
+        "showTo": "isVendor"
     },
     {
         "title": "Contract",
         "icon": "el-icon-s-cooperation",
-        "route": "vendor.contract",
-        "showTo": ["isVendor"]
+        "route": "vendor-contract",
+        "showTo": "isVendor"
     },
     {
         "title": "Ledger",
         "icon": "fa fa-inr",
-        "route": "vendor.finance",
-        "showTo": ["isVendor"]
+        "route": "vendor-ledger",
+        "showTo": "isVendor"
     },
     {
         "title": "Setting",
         "icon": "el-icon-setting",
-        "route": "vendor.setting",
-        "showTo": ["isVendor"]
-    },
-    {
-        "title": "Manage Survey",
-        "route": "bd.survey.list",
-        "icon": "el-icon-location",
-        "showTo": ["isCO", "isBD"]
-    },
-    {
-        "title": "Survey Status",
-        "route": "bd.survey.status.list",
-        "icon": "el-icon-location",
-        "showTo": ["isCO", "isBD"]
+        "route": "setting",
+        "showTo": "isVendor"
     },
     {
         "title": "BD Management",
         "icon": "el-icon-location",
-        "submenus": [{
+        "showTo": "isSuperAdmin",
+        "childRoute": ["bd-category-list", "bd-question-list", "bd-survey-list", "bd-survey-status-list"],
+        "route": "bd",
+        "submenus": [
+            {
                 "title": "Manage Question Category",
-                "route": "bd.category.list"
+                "showTo": "isSuperAdmin",
+                "route": "bd-category-list"
             },
             {
                 "title": "Manage Question",
-                "route": "bd.question.list"
+                "showTo": "isSuperAdmin",
+                "route": "bd-question-list"
             },
             {
                 "title": "Manage Project",
-                "route": "bd.survey.list"
+                "showTo": "isSuperAdmin",
+                "route": "bd-survey-list"
             },
             {
                 "title": "Project Status",
-                "route": "bd.survey.status.list"
+                "showTo": "isSuperAdmin",
+                "route": "bd-survey-status-list"
             }
         ]
     },
     {
         "title": "Vendor Management",
         "icon": "el-icon-setting",
-        "showTo": ["isSourcingTeam", "isCoorporateSourcingTeam", "isMDM","isSuperAdmin"],
-        "submenus": [{
-            "title": "Manage Vendor",
-            "route": "admin.vendor.list",
-            "disabled": false,
-            "showTo": ["isSourcingTeam", "isCoorporateSourcingTeam", "isMDM","isSuperAdmin"]
-        }]
+        "childRoute": ["vendor-list"],
+        "showTo": "isSuperAdmin",
+        "submenus": [
+            {
+                "title": "Manage Vendor",
+                "route": "vendor-list",
+                "disabled": false,
+                "showTo": "isSuperAdmin"
+            }
+        ]
     },
     {
         "title": "Contract Management",
         "icon": "el-icon-s-cooperation",
-        "showTo": ["isSourcingTeam", "isCoorporateSourcingTeam", "isMDM","isSuperAdmin"],
+        "route": "contact_management",
+        "showTo": "isSuperAdmin",
+        "childRoute": ["contract-create", "template-create", "contract-history"],
         "submenus": [
             {
                 "title": "New / Renew Contract",
-                "route": "admin.contract.create",
-                "disabled": false,
-                "showTo": ["isSourcingTeam", "isCoorporateSourcingTeam"]
-            },
-            {
-                "title": "New / Renew Contract Static",
-                "route": "admin.contract.create.static",
-                "showTo": [""]
+                "route": "contract-create",
+                "value": "contact_management",
+                "disabled": false
             },
             {
                 "title": "Manage Template",
-                "route": "admin.templete.create",
+                "route": "template-create",
                 "disabled": false,
-                "showTo": ["isSourcingTeam", "isCoorporateSourcingTeam", "isMDM","isSuperAdmin"]
+                "showTo": "isSuperAdmin"
             },
             {
                 "title": "Contract History",
-                "route": "admin.contract.history",
+                "route": "contract-history",
                 "disabled": false,
-                "showTo": ["isSourcingTeam", "isCoorporateSourcingTeam", "isMDM","isSuperAdmin"]
+                "showTo": "isSuperAdmin"
             }
         ]
     },
     {
         "title": "User Management",
+        "route": "user_management",
         "icon": "el-icon-user",
-        "submenus": [{
+        "showTo": "isSuperAdmin",
+        "childRoute": ["user-list", "role-list", "logs-list"],
+        "submenus": [
+            {
                 "title": "Manage User",
-                "route": "admin/user-list",
+                "route": "user-list",
+                "showTo": "isSuperAdmin",
                 "disabled": false
             },
             {
                 "title": "Manage Role",
-                "route": "admin/role-list",
+                "route": "role-list",
+                "showTo": "isSuperAdmin",
                 "disabled": false
             },
             {
                 "title": "Logs",
-                "route": "admin/logs-list",
+                "route": "logs-list",
+                "showTo": "isSuperAdmin",
                 "disabled": false
             }
         ]

@@ -17,10 +17,10 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [GuardService],
     children: [
-      { path: "bd/site-survey", component: ManageProjectComponent },
-      { path: "admin/user-list", component: UserListComponent },
-      { path: "admin/role-list", component: RoleListComponent },
-      { path: "admin/logs-list", component: LogsListComponent }
+      { path: "bd-survey-list", component: ManageProjectComponent },
+      { path: "user-list", component: UserListComponent },
+      { path: "role-list", component: RoleListComponent },
+      { path: "logs-list", component: LogsListComponent }
     ]
   },
 

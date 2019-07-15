@@ -88,19 +88,15 @@ export class BbqApiService {
     }).pipe(map(this.extractData));
   }
 
-  async updateOrCreate(route, body) {
+  updateOrCreate(route, body):Observable<any> {
     const headers = this.getHeaders();
 
     // Feedback already exists, so update
     let response;
     if (body.id) {
-      response =  this.updateById(route, body.id, body, {
-        headers
-      }).pipe(map(this.extractData));
+      response =  this.updateById(route, body.id, body).pipe(map(this.extractData));
     } else {
-      response = this.rawPost(route, body, {
-        headers
-      }).pipe(map(this.extractData));
+      response = this.rawPost(route, body).pipe(map(this.extractData));
     }
 
     return response;
@@ -160,40 +156,40 @@ export class BbqApiService {
   }
 
   // Bulk operations
-  async bulkCreate(path, items) {
-    const headers = this.getHeaders();
-    const newItems = [];
+  // async bulkCreate(path, items) {
+  //   const headers = this.getHeaders();
+  //   const newItems = [];
 
-    items.forEach(async item => {
-      const { data } = await this.http.post(path, item, {
-        headers
-      });
+  //   items.forEach(async item => {
+  //     const { data } = await this.http.post(path, item, {
+  //       headers
+  //     });
 
-      newItems.push(data.object);
-    });
-    return Promise.resolve(newItems);
-  }
+  //     newItems.push(data.object);
+  //   });
+  //   return Promise.resolve(newItems);
+  // }
 
-  async bulkUpdateOrCreate(route, items) {
-    const headers = this.getHeaders();
-    const newItems = [];
+  // async bulkUpdateOrCreate(route, items) {
+  //   const headers = this.getHeaders();
+  //   const newItems = [];
 
-    items.forEach(async item => {
-      let response = null;
+  //   items.forEach(async item => {
+  //     let response = null;
 
-      if (item.id) {
-        response = await this.updateById(route, item.id, item, {
-          headers
-        });
-      } else {
-        response = await this.rawPost(route, item, {
-          headers
-        });
-      }
-      newItems.push(response);
-    });
-    return Promise.resolve(newItems);
-  }
+  //     if (item.id) {
+  //       response = await this.updateById(route, item.id, item, {
+  //         headers
+  //       });
+  //     } else {
+  //       response = await this.rawPost(route, item, {
+  //         headers
+  //       });
+  //     }
+  //     newItems.push(response);
+  //   });
+  //   return Promise.resolve(newItems);
+  // }
 
   // async getBBQApi(route) {
   //   const axios = Axios.create();

@@ -1,3 +1,4 @@
+<button nz-button (click)="createModal('add')" type="submit">Add User</button>
 <nz-table
   #dataTable
   [(nzPageSize)]="pageSize"
@@ -28,7 +29,7 @@
       <td>
         <mat-icon
           aria-hidden="false"
-          (click)="createModal()"
+          (click)="createModal('edit', data)"
           aria-label="Example home icon"
           >edit</mat-icon
         >

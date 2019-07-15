@@ -10,7 +10,6 @@ export class GuardService {
 
   public canActivate():boolean {
     const token = localStorage.getItem('x-access-token');
-    console.log(token)
     if(!token) {
       this.router.navigate(['login']);
       return false

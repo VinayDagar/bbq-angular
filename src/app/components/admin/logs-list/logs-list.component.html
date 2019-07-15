@@ -1,1 +1,24 @@
-<p>logs-list works!</p>
+<nz-table
+  #dataTable
+  [(nzPageSize)]="pageSize"
+  (nzPageIndexChange)="getData()"
+  [nzData]="items"
+>
+  <thead (nzSortChange)="sort($event)" nzSingleSort>
+    <tr>
+      <th *ngFor="let item of headers" nzShowSort nzSortKey="item.value">
+        <span>{{ item.text }}</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of dataTable.data">
+      <td>{{ data.User.fullName || "NA" }}</td>
+      <td>{{ data.User.userName || "NA" }}</td>
+      <td>{{ data.entity }}</td>
+      <td>{{ data.type }}</td>
+      <td>{{ data.User.role.name }}</td>
+      <td>{{ data.created_at | date }}</td>
+    </tr>
+  </tbody>
+</nz-table>

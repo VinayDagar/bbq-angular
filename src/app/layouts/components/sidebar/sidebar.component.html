@@ -1,25 +1,19 @@
-<ul
-  class="side-bar"
-  nz-menu
-  nzTheme="dark"
-  [nzMode]="'inline'"
-  *ngFor="let menu of sidemenues"
->
-  <li
-    [(nzOpen)]="openMap.sub"
-    (nzOpenChange)="openHandler('sub2')"
-    nz-submenu
-    *ngIf="menu.submenus && menu.submenus.length"
-  >
-    <span title> {{ menu.title }} </span>
-    <span *ngIf="menu.submenus && menu.submenus.length">
-      <ul *ngFor="let submenu of menu.submenus">
-        <li nz-menu-item
-            (click)="navigate(submenu.route)"
-        >
-          <span>{{ submenu.title }}</span>
-        </li>
-      </ul>
-    </span>
-  </li>
-</ul>
+<nav id="sidebar" class="sidebar-wrapper">
+  <div class="sidebar-menu">
+    <ul *ngFor="let menu of sidemenues">
+      <li *ngIf="menu.submenus && menu.submenus.length" class="sidebar-dropdown">
+        <a href="#">
+          <i class="fa fa-tachometer-alt"></i>
+          <span>{{menu.title}}</span>
+        </a>
+        <div *ngIf="menu.submenus && menu.submenus.length" class="sidebar-submenu">
+          <ul *ngFor="let submenu of menu.submenus">
+            <li>
+              <a [routerLink]="submenu.route">{{submenu.title}}</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

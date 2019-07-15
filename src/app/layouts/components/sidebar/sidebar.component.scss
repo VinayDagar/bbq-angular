@@ -1,8 +1,11 @@
 .side-bar {
   width: 240px;
-  position: absolute;
+  position: fixed;
   left: 0;
   height: 90%;
-  top: 50;
+  top: 64px;
   box-shadow: 2px 2px 5px -3px rgba(0, 0, 0, 0.75);
+}
+.sidebar-menu, .sidebar-wrapper {
+  width: 240px
 }

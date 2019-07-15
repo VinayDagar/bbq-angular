@@ -8,7 +8,6 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 // services
 import { LoginService } from './services/login/login.service';
-import { FetchDataService } from './services/data/fetch-data.service';
 
 import { FormsModule } from '@angular/forms';
 
@@ -22,6 +21,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import {PanelMenuModule} from 'primeng/panelmenu';
 
 // custom pipes
 import { ExponentialPipe } from './filters/exponential.pipe';
@@ -35,6 +35,11 @@ import { RoleListComponent } from './components/admin/role-list/role-list.compon
 import { LogsListComponent } from './components/admin/logs-list/logs-list.component';
 import { BbqApiService } from './services/bbq-api/bbq-api.service';
 import { ModalComponent } from './components/admin/user-list/modal/modal.component';
+import { RoleModalComponent } from './components/admin/role-list/role-modal/role-modal.component';
+import { ToastrModule } from 'ngx-toastr';
+import {SidebarModule} from 'primeng/sidebar';
+import { ViewSurveyModalComponent } from './components/bd-management/manage-project/view-survey-modal/view-survey-modal.component';
+import { ViewSurveyComponent } from './components/bd-management/view-survey/view-survey.component';
 
 registerLocaleData(en);
 
@@ -49,6 +54,9 @@ registerLocaleData(en);
     RoleListComponent,
     LogsListComponent,
     ModalComponent,
+    RoleModalComponent,
+    ViewSurveyModalComponent,
+    ViewSurveyComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,9 +74,11 @@ registerLocaleData(en);
     MatTableModule,
     NgZorroAntdModule,
     MatIconModule,
+    ToastrModule.forRoot(),
+    SidebarModule
   ],
-  entryComponents: [ModalComponent],
-  providers: [LoginService, FetchDataService, BbqApiService, HttpClient, { provide: NZ_I18N, useValue: en_US }],
+  entryComponents: [ModalComponent, RoleModalComponent, ViewSurveyModalComponent],
+  providers: [LoginService, BbqApiService, HttpClient, { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

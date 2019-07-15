@@ -1,0 +1,16 @@
+<div *ngIf="surveyNotes && surveyNotes.length">
+  <div style="background: #ECECEC;padding:30px; max-height: 300px; overflow: scroll;">
+    <div  nz-row *ngFor="let item of surveyNotes" [nzGutter]="8">
+      <nz-card
+        style="margin-top: 5px"
+        [nzTitle]="item.SurveyNoteCreatedBy.fullName"
+      >
+        <p
+          style="font-size:14px;color:#000000d9;margin-bottom:16px;font-weight: 500;"
+        >
+          {{ item.text }}
+        </p>
+      </nz-card>
+    </div>
+  </div>
+</div>

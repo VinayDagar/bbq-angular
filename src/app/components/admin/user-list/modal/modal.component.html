@@ -26,16 +26,20 @@
         ></nz-option>
       </nz-select>
     </nz-form-control>
-    <nz-form-label [nzSpan]="6" nzFor="type">Type</nz-form-label>
-    <nz-form-control [nzSpan]="14">
-      <nz-radio-group name="type" [(ngModel)]="type">
-        <label nz-radio [ngStyle]="style" nzValue="sourcing">IS Sourcing</label>
-        <label nz-radio [ngStyle]="style" nzValue="coorporate_sourcing"
-          >IS Coorporate Sourcing</label
-        >
-        <label nz-radio [ngStyle]="style" nzValue="mdm">IS MDM</label>
-      </nz-radio-group>
-    </nz-form-control>
+    <span *ngIf="selectedRole && selectedRole.name == 'sourcing'">
+      <nz-form-label [nzSpan]="6" nzFor="type">Type</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <nz-radio-group name="type" [(ngModel)]="type">
+          <label nz-radio [ngStyle]="style" nzValue="sourcing"
+            >IS Sourcing</label
+          >
+          <label nz-radio [ngStyle]="style" nzValue="coorporate_sourcing"
+            >IS Coorporate Sourcing</label
+          >
+          <label nz-radio [ngStyle]="style" nzValue="mdm">IS MDM</label>
+        </nz-radio-group>
+      </nz-form-control>
+    </span>
     <span
       *ngIf="
         selectedRole && selectedRole.name === 'sourcing' && type === 'sourcing'
@@ -57,6 +61,12 @@
           ></nz-option>
         </nz-select>
       </nz-form-control>
+    </span>
+    <span
+      *ngIf="
+        type !== 'mdm' || (selectedRole && selectedRole.name !== 'sourcing')
+      "
+    >
       <nz-form-label [nzSpan]="6" nzFor="region">Regions</nz-form-label>
       <nz-form-control [nzSpan]="14">
         <nz-select
@@ -73,6 +83,12 @@
           ></nz-option>
         </nz-select>
       </nz-form-control>
+    </span>
+    <span
+      *ngIf="
+        type !== 'mdm' || (selectedRole && selectedRole.name !== 'sourcing')
+      "
+    >
       <nz-form-label [nzSpan]="6" nzFor="region">Areas</nz-form-label>
       <nz-form-control [nzSpan]="14">
         <nz-select
@@ -90,16 +106,22 @@
         </nz-select>
       </nz-form-control>
     </span>
-    <nz-form-control [nzSpan]="14" [nzOffset]="6">
-      <button
-        type="submit"
-        (click)="save()"
-        [disabled]="!selectedUser || !selectedRole"
-        nz-button
-        nzType="primary"
-      >
-        {{ mode === "edit" ? "Update" : "Add" }}
-      </button>
-    </nz-form-control>
+    <span
+      *ngIf="
+        type !== 'mdm' || (selectedRole && selectedRole.name !== 'sourcing')
+      "
+    >
+      <nz-form-control [nzSpan]="14" [nzOffset]="6">
+        <button
+          type="submit"
+          (click)="save()"
+          [disabled]="!selectedUser || !selectedRole"
+          nz-button
+          nzType="primary"
+        >
+          {{ mode === "edit" ? "Update" : "Add" }}
+        </button>
+      </nz-form-control>
+    </span>
   </nz-form-item>
 </form>

@@ -19,7 +19,6 @@ export class UserListComponent implements OnInit {
   userData: Array<any> = [];
   pageIndex = 1;
   pageSize = 5;
-  isVisible = false;
   roles: [];
   regions: [];
   areas: [];
@@ -119,7 +118,7 @@ export class UserListComponent implements OnInit {
       });
   }
 
-  createModal(): void {
+  createModal(mode, data): void {
     this.modalService.create({
       nzTitle: "Add User",
       nzContent: ModalComponent,
@@ -132,7 +131,8 @@ export class UserListComponent implements OnInit {
         supercategories: this.superCategories,
         regions: this.regions,
         roles: this.roles,
-        mode: 'edit'
+        mode,
+        currentUser: data
       }
       // nzOnOk: () => new Promise(resolve => setTimeout(resolve, 1000))
     });

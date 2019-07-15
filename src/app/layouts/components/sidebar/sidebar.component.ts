@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import menus from "../../../../assets/menu-items.json";
 import { Router } from '@angular/router';
+import {MenuItem} from 'primeng/api';
 
 @Component({
   selector: "app-sidebar",
@@ -13,7 +14,7 @@ export class SidebarComponent implements OnInit {
   sidemenues: Array<any> = menus;
   // isCollasped:boolean = false;
   openMap: { [name: string]: boolean } = {
-    sub: false
+    sub: true
   };
 
   navigate(route) {
