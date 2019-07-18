@@ -1,0 +1,30 @@
+<div>
+  <nz-input-group style="max-width: 300px" [nzSuffix]="suffixIconSearch">
+    <input type="text" nz-input placeholder="Search" [(ngModel)]="search" />
+  </nz-input-group>
+  <nz-table
+    #dataTable
+    [(nzPageSize)]="pageSize"
+    (nzPageIndexChange)="getData()"
+    [nzData]="items"
+  >
+    <thead (nzSortChange)="sort($event)" nzSingleSort>
+      <tr>
+        <th *ngFor="let item of headers" nzShowSort nzSortKey="item.value">
+          <span>{{ item.text }}</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of dataTable.data">
+        <td>{{ data.region || "NA" }}</td>
+        <td>{{ data.title || "NA" }}</td>
+        <td>{{ data.location || "NA" }}</td>
+        <td>{{ data.bd || "NA" }}</td>
+        <td>{{ data.legal || "NA" }}</td>
+        <td>{{ data.operations || "NA" }}</td>
+        <td>{{ data.project || "NA" }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

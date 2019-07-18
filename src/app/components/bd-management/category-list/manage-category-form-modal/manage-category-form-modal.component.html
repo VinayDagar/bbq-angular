@@ -1,0 +1,36 @@
+<form nz-form nzLayout="vertical" (ngSubmit)="createOrUpdate()">
+  <nz-form-item>
+    <nz-form-label nzFor="name">Name</nz-form-label>
+    <nz-form-control>
+      <input
+        [disabled]="mode === 'edit'"
+        [(ngModel)]="category.name"
+        nz-input
+        required
+        name="name"
+        type="text"
+      />
+    </nz-form-control>
+
+    <nz-form-label nzFor="editable">Editable By</nz-form-label>
+    <nz-form-control>
+      <nz-select
+        style="width: 100%"
+        [(ngModel)]="selectedRoles"
+        [nzSize]="size"
+        nzMode="multiple"
+        name="editable"
+        nzPlaceHolder="Please select"
+      >
+        <nz-option
+          *ngFor="let option of roles"
+          [nzLabel]="option.name"
+          [nzValue]="option"
+        ></nz-option>
+      </nz-select>
+    </nz-form-control>
+    <button style="float: right; margin: 10px" nz-button nzType="primary" type="submit">
+      {{ mode === "edit" ? "Update" : "Add" }}
+    </button>
+  </nz-form-item>
+</form>

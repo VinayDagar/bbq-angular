@@ -35,9 +35,30 @@
       <td>{{ data.created_at | date }}</td>
       <td style="cursor: pointer;">
         <span>
-          <nz-avatar nzSize="small" [ngStyle]="{ 'background': 'none', 'color': 'black' }" (click)="viewSurveyNotes(data.id)" nzIcon="message"></nz-avatar>
-          <nz-avatar nzSize="small" [ngStyle]="{ 'background': 'none', 'color': 'black' }" (click)="viewSurvey(data.id)" nzIcon="eye"></nz-avatar>
-          <nz-avatar nzSize="small" [ngStyle]="{ 'background': 'none', 'color': 'black' }" nzIcon="delete"></nz-avatar>
+          <nz-avatar
+            nzSize="small"
+            [ngStyle]="{ background: 'none', color: 'black' }"
+            (click)="viewSurveyNotes(data.id)"
+            nzIcon="message"
+          ></nz-avatar>
+          <nz-avatar
+            nzSize="small"
+            [ngStyle]="{ background: 'none', color: 'black' }"
+            (click)="manageSurvey(data.id)"
+            nzIcon="eye"
+          ></nz-avatar>
+          <a
+            nz-popconfirm
+            nzTitle="Are you sure delete this?"
+            (nzOnConfirm)="deleteProject(data.id)"
+            nzPlacement="top"
+          >
+            <nz-avatar
+              nzSize="small"
+              [ngStyle]="{ background: 'none', color: 'black' }"
+              nzIcon="delete"
+            ></nz-avatar>
+          </a>
         </span>
       </td>
     </tr>

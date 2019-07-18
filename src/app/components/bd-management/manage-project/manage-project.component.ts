@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { BbqApiService } from "src/app/services/bbq-api/bbq-api.service";
 import { isEmpty, orderBy, flattenDeep } from "lodash";
 import { NzModalService } from "ng-zorro-antd";
-import { ViewSurveyModalComponent } from './view-survey-modal/view-survey-modal.component';
-import { Router } from '@angular/router';
+import { ViewSurveyModalComponent } from "./view-survey-modal/view-survey-modal.component";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-manage-project",
@@ -11,8 +11,12 @@ import { Router } from '@angular/router';
   styleUrls: ["./manage-project.component.scss"]
 })
 export class ManageProjectComponent implements OnInit {
-  constructor(private $http: BbqApiService, private modalService: NzModalService, private router: Router) {}
-  API_URL = "http://localhost:3000/api/v1/";
+  constructor(
+    private $http: BbqApiService,
+    private modalService: NzModalService,
+    private router: Router
+  ) {}
+  API_URL = "http://localhost:3001/api/v1/";
   items: Array<any> = [];
   roles: Array<any> = [];
   pageSize = 5;
@@ -102,8 +106,15 @@ export class ManageProjectComponent implements OnInit {
         return survey;
       });
     });
+  }
 
-    console.log(this.items, "items");
+  deleteProject(id) {
+    this.$http.updateById(this.API_URL+"site-survey", id, {
+      isDeleted: true
+    }).subscribe(res =>  {
+      this.getData();
+      console.log('res',res)
+    })
   }
 
   parseSiteRegion(responses) {
@@ -138,7 +149,7 @@ export class ManageProjectComponent implements OnInit {
 
   viewSurveyNotes(surveyId) {
     this.$http
-      .get(this.API_URL+"site-survey-note", {
+      .get(this.API_URL + "site-survey-note", {
         where: {
           siteSurveyId: surveyId
         },
@@ -151,7 +162,7 @@ export class ManageProjectComponent implements OnInit {
       })
       .subscribe(res => {
         this.surveyNotes = res;
-        console.log(res)
+        console.log(res);
       });
     this.modalService.create({
       nzTitle: "Project Notes",
@@ -162,11 +173,10 @@ export class ManageProjectComponent implements OnInit {
       nzComponentParams: {
         surveyNotes: this.surveyNotes
       }
-    })
-  };
-
-  viewSurvey(id) {
-    
+    });
   }
 
+  manageSurvey(id) {
+    this.router.navigate(['/dashboard/bd-view-survey/'+id+'/'])
+  }
 }

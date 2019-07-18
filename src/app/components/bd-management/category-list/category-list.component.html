@@ -1,0 +1,41 @@
+<button nz-button (click)="createUpdateModal('add')" type="submit">Add Category</button>
+<nz-table
+  #dataTable
+  [(nzPageSize)]="pageSize"
+  (nzPageIndexChange)="getData()"
+  [nzData]="items"
+>
+  <thead (nzSortChange)="sort($event)" nzSingleSort>
+    <tr>
+      <th *ngFor="let item of headers" nzShowSort nzSortKey="item.value">
+        <span>{{ item.text }}</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of dataTable.data">
+      <td>{{ data.order }}</td>
+      <td>{{ data.name }}</td>
+      <td>
+          <span *ngFor="let name of data.roles"> {{name}} </span>
+      </td>
+      <td style="cursor: pointer;">
+        <mat-icon
+          aria-hidden="false"
+          (click)="createUpdateModal('edit', data)"
+          aria-label="Example home icon"
+          >edit</mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          (click)="createModal('edit', data)"
+          aria-label="Example home icon"
+          >sort</mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          (click)="delete(data)"
+          aria-label="Example home icon"
+          >delete</mat-icon>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

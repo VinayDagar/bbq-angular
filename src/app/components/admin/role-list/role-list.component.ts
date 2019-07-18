@@ -100,7 +100,7 @@ export class RoleListComponent implements OnInit {
     // { text: "Region", value: "region" },
     { text: "Actions", value: "actions", sortable: false, align: "right" }
   ];
-  API_URL = "http://localhost:3000/api/v1/";
+  API_URL = "http://localhost:3001/api/v1/";
   items = [];
   roles = [];
   pageSize = 5;

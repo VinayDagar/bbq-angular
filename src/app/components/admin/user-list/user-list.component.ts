@@ -14,7 +14,7 @@ export class UserListComponent implements OnInit {
     private modalService: NzModalService
   ) {}
   sortName: string | null = null;
-  API_URL = 'http://localhost:3000/api/v1/'
+  API_URL = 'http://localhost:3001/api/v1/'
   sortValue: string | null = null;
   userData: Array<any> = [];
   pageIndex = 1;
@@ -111,7 +111,7 @@ export class UserListComponent implements OnInit {
     };
 
     this.$http
-      .get("http://localhost:3000/api/v1/user/find-and-count", query)
+      .get("http://localhost:3001/api/v1/user/find-and-count", query)
       .subscribe(data => {
         this.userData = data.data;
         console.log(data, "user data");

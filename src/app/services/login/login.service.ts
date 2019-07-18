@@ -10,7 +10,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   userLogin(user) {
-    return this.http.post('http://localhost:3000/api/v1/login', user)
+    return this.http.post('http://localhost:3001/api/v1/login', user)
       .pipe(
         catchError(this.handleError)
       )

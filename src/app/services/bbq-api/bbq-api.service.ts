@@ -81,7 +81,7 @@ export class BbqApiService {
     }).pipe(map(this.extractData));
   }
 
-  async update(route, query = {}, body = {}) {
+  update(route, query = {}, body = {}):Observable<any> {
     const headers = this.getHeaders();
     return this.http.put(`${route}?${stringify(query)}`, body, {
       headers

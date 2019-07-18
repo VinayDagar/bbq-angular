@@ -18,7 +18,7 @@ export class RoleModalComponent implements OnInit {
 
   // tplModal: NzModalRef;
   selectedPermission = [];
-  API_URL = "http://localhost:3000/api/v1/";
+  API_URL = "http://localhost:3001/api/v1/";
 
   constructor(
     private $http: BbqApiService,

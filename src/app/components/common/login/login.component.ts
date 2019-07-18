@@ -19,6 +19,7 @@ export class LoginComponent {
     this.login.userLogin(data)
       .subscribe((logedinUser:any) => {
         localStorage.setItem('x-access-token', logedinUser.object.token)
+        localStorage.setItem('user', JSON.stringify(logedinUser.object.user));
         console.log(logedinUser)
         this.router.navigate(['/dashboard']);
       })

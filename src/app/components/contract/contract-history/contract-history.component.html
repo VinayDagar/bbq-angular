@@ -1,0 +1,43 @@
+<nz-select style="width: 200px;" [(ngModel)]="singleValue" nzSize="medium">
+  <nz-option
+    *ngFor="let option of options"
+    [nzLabel]="option.name"
+    [nzValue]="option.value"
+  ></nz-option>
+</nz-select>
+<nz-table
+  #dataTable
+  [(nzPageSize)]="pageSize"
+  (nzPageIndexChange)="getItem()"
+  [nzData]="items"
+>
+  <thead (nzSortChange)="sort($event)" nzSingleSort>
+    <tr>
+      <th *ngFor="let item of headers" nzShowSort nzSortKey="item.value">
+        <span>{{ item.text }}</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of dataTable.data">
+      <td>{{ data.id }}</td>
+      <td>{{ data.Vendor.companyName }}</td>
+      <td>{{ data.MstCategory.name }}</td>
+      <td>{{ data.User ? data.User.fullName : "NA" }}</td>
+      <td>
+        {{ data.fromDate | date }} -
+        {{ data.toDate | date }}
+      </td>
+      <td>{{ data.status.split("_").join(" ") | titlecase }}</td>
+      <td>
+        <mat-icon
+          style="color: black"
+          aria-hidden="false"
+          (click)="createModal('edit', data)"
+          aria-label="Example home icon"
+          >eye</mat-icon
+        >
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

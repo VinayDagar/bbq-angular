@@ -10,7 +10,7 @@ export class LogsListComponent implements OnInit {
   constructor(private $http: BbqApiService) {}
   items:Array<any> = [];
   totalItems = null;
-  API_URL:String = "http://localhost:3000/api/v1/";
+  API_URL:String = "http://localhost:3001/api/v1/";
   headers = [
     { text: "Name", sortable: false },
     { text: "User Name", sortable: false },

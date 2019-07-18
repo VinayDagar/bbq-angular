@@ -9,5 +9,8 @@ import {DashboardHeaderComponent} from "../components/dashboard-header/dashboard
 
 export class DashboardComponent implements OnInit {
   constructor() {}
-  ngOnInit() {}
+  ngOnInit() {
+    const user = localStorage.getItem('user');
+    console.log(JSON.parse(user));
+  }
 }
