@@ -10,7 +10,6 @@ export class LogsListComponent implements OnInit {
   constructor(private $http: BbqApiService) {}
   items:Array<any> = [];
   totalItems = null;
-  API_URL:String = "http://localhost:3001/api/v1/";
   headers = [
     { text: "Name", sortable: false },
     { text: "User Name", sortable: false },
@@ -50,7 +49,7 @@ export class LogsListComponent implements OnInit {
       });
     }
     this.$http
-      .get(this.API_URL + "log/find-and-count", query)
+      .get("log/find-and-count", query)
       .subscribe(res => {
         console.log(res,'res')
         this.items = res.data;

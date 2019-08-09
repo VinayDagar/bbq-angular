@@ -12,7 +12,6 @@ export class ViewSurveyComponent implements OnInit {
   constructor(private router: ActivatedRoute, private $http: BbqApiService) {}
   routeParam: any = null;
   data: Array<any> = [];
-  API_URL: String = "http://localhost:3001/api/v1/";
 
   ngOnInit() {
     this.router.params.subscribe(a => {
@@ -21,7 +20,7 @@ export class ViewSurveyComponent implements OnInit {
 
     if (this.routeParam) {
       this.$http
-        .get(this.API_URL + "question-category", {
+        .get("question-category", {
           where: {
             isDeleted: false
           },

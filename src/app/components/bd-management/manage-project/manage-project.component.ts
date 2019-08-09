@@ -16,7 +16,6 @@ export class ManageProjectComponent implements OnInit {
     private modalService: NzModalService,
     private router: Router
   ) {}
-  API_URL = "http://localhost:3001/api/v1/";
   items: Array<any> = [];
   roles: Array<any> = [];
   pageSize = 5;
@@ -99,7 +98,7 @@ export class ManageProjectComponent implements OnInit {
       ]
     };
 
-    this.$http.get(this.API_URL + "site-survey", query).subscribe(res => {
+    this.$http.get("site-survey", query).subscribe(res => {
       this.items = res.map(survey => {
         survey.location = this.parseSiteLocation(survey.responses);
         survey.region = this.parseSiteRegion(survey.responses);
@@ -109,7 +108,7 @@ export class ManageProjectComponent implements OnInit {
   }
 
   deleteProject(id) {
-    this.$http.updateById(this.API_URL+"site-survey", id, {
+    this.$http.updateById("site-survey", id, {
       isDeleted: true
     }).subscribe(res =>  {
       this.getData();
@@ -149,7 +148,7 @@ export class ManageProjectComponent implements OnInit {
 
   viewSurveyNotes(surveyId) {
     this.$http
-      .get(this.API_URL + "site-survey-note", {
+      .get("site-survey-note", {
         where: {
           siteSurveyId: surveyId
         },

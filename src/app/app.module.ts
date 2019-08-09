@@ -45,6 +45,8 @@ import { CategoryListComponent } from './components/bd-management/category-list/
 import { ManageCategoryFormModalComponent } from './components/bd-management/category-list/manage-category-form-modal/manage-category-form-modal.component';
 import { SurveyStatusComponent } from './components/bd-management/survey-status/survey-status.component';
 import { ContractHistoryComponent } from './components/contract/contract-history/contract-history.component';
+import { ManageQuestionComponent } from './components/bd-management/manage-question/manage-question.component';
+import { QuestionListComponent } from './components/bd-management/question-list/question-list.component';
 
 registerLocaleData(en);
 
@@ -65,7 +67,9 @@ registerLocaleData(en);
     CategoryListComponent,
     ManageCategoryFormModalComponent,
     SurveyStatusComponent,
-    ContractHistoryComponent
+    ContractHistoryComponent,
+    ManageQuestionComponent,
+    QuestionListComponent
   ],
   imports: [
     BrowserModule,

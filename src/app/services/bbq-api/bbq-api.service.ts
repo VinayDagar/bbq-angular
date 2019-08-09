@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: "root"
 })
+const API_URL = 'http://localhost:3000/api/v1/';
 export class BbqApiService {
   private extractData(res: any) {
     return res.object || null;
@@ -23,7 +24,7 @@ export class BbqApiService {
   rawPost(path, payload): Observable<any> {
     const headers = this.getHeaders();
 
-    return this.http.post(path, payload, {
+    return this.http.post(API_URL + path, payload, {
         headers,
     }).pipe(map(this.extractData));
 }
@@ -36,7 +37,7 @@ export class BbqApiService {
     }
     const headers = this.getHeaders();
     return this.http
-      .get(`${route}?${stringify(query)}`, {
+      .get(`${API_URL}${route}?${stringify(query)}`, {
         headers
       })
       .pipe(map(this.extractData));
@@ -47,7 +48,7 @@ export class BbqApiService {
 
     const headers = this.getHeaders();
 
-    return this.http.get(`${route}/${id}`, {
+    return this.http.get(`${API_URL}${route}/${id}`, {
       headers
     }).pipe(map(this.extractData));
   }
@@ -63,12 +64,12 @@ export class BbqApiService {
   // }
 
   getWithoutHeaders(route) {
-    return this.http.get(route).pipe(map(this.extractData));
+    return this.http.get(API_URL + route).pipe(map(this.extractData));
   }
 
   // PUT services
   rawPut(path, payload): Observable<any> {
-    return this.http.put(path, payload).pipe(map(this.extractData));
+    return this.http.put(API_URL + path, payload).pipe(map(this.extractData));
   }
 
   updateById(route, id, body): Observable<any> {
@@ -76,14 +77,14 @@ export class BbqApiService {
 
     const headers = this.getHeaders();
 
-    return this.http.put(`${route}/${id}`, body, {
+    return this.http.put(`${API_URL}${route}/${id}`, body, {
       headers
     }).pipe(map(this.extractData));
   }
 
   update(route, query = {}, body = {}):Observable<any> {
     const headers = this.getHeaders();
-    return this.http.put(`${route}?${stringify(query)}`, body, {
+    return this.http.put(`${API_URL}${route}?${stringify(query)}`, body, {
       headers
     }).pipe(map(this.extractData));
   }
@@ -105,7 +106,7 @@ export class BbqApiService {
   // PATCH services
   patch(route, body) {
     const headers = this.getHeaders();
-    return this.http.patch(`${route}`, body, {
+    return this.http.patch(`${API_URL}${route}`, body, {
       headers
     }).pipe(map(this.extractData));
   }
@@ -116,7 +117,7 @@ export class BbqApiService {
 
     const headers = this.getHeaders();
 
-    return this.http.delete(`${route}/${id}`, {
+    return this.http.delete(`${API_URL}${route}/${id}`, {
       headers
     }).pipe(map(this.extractData));
   }

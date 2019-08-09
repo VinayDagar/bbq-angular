@@ -19,7 +19,6 @@ export class CategoryListComponent implements OnInit {
     { text: "Editable By", value: "roles", sortable: false },
     { text: "Actions", value: "actions", sortable: false, align: "right" }
   ];
-  API_URL = "http://localhost:3001/api/v1/";
   items = [];
   roles = [];
   question = {};
@@ -36,7 +35,7 @@ export class CategoryListComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.$http
-      .get(this.API_URL + "role", {
+      .get("role", {
         where: {
           name: {
             $notIn: ["erp_user", "superadmin"]
@@ -61,7 +60,7 @@ export class CategoryListComponent implements OnInit {
       order: [["order", "ASC"]]
     };
 
-    this.$http.get(this.API_URL + "question-category", query).subscribe(res => {
+    this.$http.get("question-category", query).subscribe(res => {
       const data = res;
       this.items = data.map(el => {
         const roleIds = el.question_category_roles.map(c => c.roleId);
@@ -98,14 +97,14 @@ export class CategoryListComponent implements OnInit {
     ) {
       await Promise.all(
         category.question_category_roles.map(el =>
-          this.$http.delete(this.API_URL + "question-category-role", el.id).toPromise()
+          this.$http.delete("question-category-role", el.id).toPromise()
         )
       );
     }
 
     await this.$http
       .update(
-        this.API_URL + "question",
+        "question",
         {
           where: {
             questionCategoryId: category.id
@@ -114,7 +113,7 @@ export class CategoryListComponent implements OnInit {
         { isDeleted: true }
       ).toPromise()
 
-    await this.$http.updateById(this.API_URL + "question-category", category.id, {
+    await this.$http.updateById("question-category", category.id, {
       isDeleted: true
     }).toPromise()
 

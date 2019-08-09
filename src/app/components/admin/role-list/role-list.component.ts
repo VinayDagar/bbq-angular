@@ -16,12 +16,12 @@ export class RoleListComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
-    this.$http.get(this.API_URL + "role").subscribe(res => (this.roles = res));
+    this.$http.get("role").subscribe(res => (this.roles = res));
     this.$http
-      .get(this.API_URL + "mst-super-category")
+      .get("mst-super-category")
       .subscribe(res => (this.superCategories = res));
     this.$http
-      .get(this.API_URL + "mst-region")
+      .get("mst-region")
       .subscribe(res => (this.regions = res));
   }
 
@@ -33,7 +33,7 @@ export class RoleListComponent implements OnInit {
         }
       }
     };
-    this.$http.get(this.API_URL + "role", query).subscribe(res => {
+    this.$http.get("role", query).subscribe(res => {
       console.log(res, "res");
       this.items = res;
     });
@@ -100,7 +100,6 @@ export class RoleListComponent implements OnInit {
     // { text: "Region", value: "region" },
     { text: "Actions", value: "actions", sortable: false, align: "right" }
   ];
-  API_URL = "http://localhost:3001/api/v1/";
   items = [];
   roles = [];
   pageSize = 5;

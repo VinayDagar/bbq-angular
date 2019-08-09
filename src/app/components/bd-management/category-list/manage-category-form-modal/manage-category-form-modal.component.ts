@@ -14,7 +14,6 @@ export class ManageCategoryFormModalComponent implements OnInit {
   @Input("mode") mode: String;
 
   selectedRoles = [];
-  API_URL = "http://localhost:3001/api/v1/";
   res = null;
 
   constructor(
@@ -32,7 +31,6 @@ export class ManageCategoryFormModalComponent implements OnInit {
   }
 
   createOrUpdate() {
-    console.log(this.selectedRoles)
     const questionRoles = this.selectedRoles.map(x => {
       return { roleId: x.id };
     });
@@ -49,7 +47,7 @@ export class ManageCategoryFormModalComponent implements OnInit {
   async create(data) {
     try {
       const category = await this.$http
-        .get(this.API_URL+"question-category", {
+        .get("question-category", {
           where: {
             name: data.name,
             isDeleted: true
@@ -61,14 +59,14 @@ export class ManageCategoryFormModalComponent implements OnInit {
         ? "Category successfully updated"
         : "Category successfully created";
       if (!data.id) {
-        const count = await this.$http.get(this.API_URL+"question-category/count").toPromise()
+        const count = await this.$http.get("question-category/count").toPromise()
         data.order = count + 1;
       }
 
       if (!data.id && category && category.length) {
         const categoryID = category[0].id;
         this.res = await this.$http
-          .updateById(this.API_URL+"question-category", categoryID, {
+          .updateById("question-category", categoryID, {
             isDeleted: false
           })
           .toPromise();
@@ -76,7 +74,7 @@ export class ManageCategoryFormModalComponent implements OnInit {
       } else {
         console.log(data,'update')
         this.res = await this.$http
-          .updateOrCreate(this.API_URL+"question-category", data)
+          .updateOrCreate("question-category", data)
           .toPromise();
       }
 
@@ -88,7 +86,7 @@ export class ManageCategoryFormModalComponent implements OnInit {
         console.log(data.question_category_roles, 'question_category_roles')
         await Promise.all(
           data.question_category_roles.map(c =>
-            this.$http.delete(this.API_URL+"question-category-role", c.id).toPromise()
+            this.$http.delete("question-category-role", c.id).toPromise()
           )
         );
       }
@@ -96,7 +94,7 @@ export class ManageCategoryFormModalComponent implements OnInit {
       await Promise.all(
         data.questionRoles.map(item =>
           this.$http
-            .rawPost(this.API_URL+"question-category-role", {
+            .rawPost("question-category-role", {
               ...item,
               ...{ questionCategoryId: this.res.id }
             })

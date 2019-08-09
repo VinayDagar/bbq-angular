@@ -14,7 +14,6 @@ export class SurveyStatusComponent implements OnInit {
     this.getData()
   }
   items: Array<any> = [];
-  API_URL = "http://localhost:3001/api/v1/";
   search = null;
   pageSize = 5;
   headers = [
@@ -83,7 +82,7 @@ export class SurveyStatusComponent implements OnInit {
     };
     // if (this.isBD) Object.assign(query.where, { createdById: this.userId });
 
-    let surveys = await this.$http.get(this.API_URL + "site-survey", query).toPromise()
+    let surveys = await this.$http.get("site-survey", query).toPromise()
     const items = [];
 
     for (const survey of surveys) {

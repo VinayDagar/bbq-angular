@@ -14,7 +14,6 @@ export class UserListComponent implements OnInit {
     private modalService: NzModalService
   ) {}
   sortName: string | null = null;
-  API_URL = 'http://localhost:3001/api/v1/'
   sortValue: string | null = null;
   userData: Array<any> = [];
   pageIndex = 1;
@@ -29,7 +28,7 @@ export class UserListComponent implements OnInit {
   ngOnInit() {
     this.getData();
     this.$http
-      .get(this.API_URL+"role", {
+      .get("role", {
         where: {
           name: {
             $notIn: ["superadmin"]
@@ -40,12 +39,12 @@ export class UserListComponent implements OnInit {
         this.roles = role;
       });
     this.$http
-      .get(this.API_URL+"mst-super-category")
+      .get("mst-super-category")
       .subscribe(superCategory => (this.superCategories = superCategory));
-    this.$http.get(this.API_URL+"mst-region").subscribe(region => (this.regions = region));
-    this.$http.get(this.API_URL+"mst-area").subscribe(area => (this.areas = area));
+    this.$http.get("mst-region").subscribe(region => (this.regions = region));
+    this.$http.get("mst-area").subscribe(area => (this.areas = area));
     this.$http
-      .get(this.API_URL+"user", {
+      .get("user", {
         where: {
           roleId: {
             $eq: 0
@@ -111,7 +110,7 @@ export class UserListComponent implements OnInit {
     };
 
     this.$http
-      .get("http://localhost:3001/api/v1/user/find-and-count", query)
+      .get("user/find-and-count", query)
       .subscribe(data => {
         this.userData = data.data;
         console.log(data, "user data");

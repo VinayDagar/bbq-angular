@@ -9,7 +9,6 @@ import { BbqApiService } from "src/app/services/bbq-api/bbq-api.service";
 export class ContractHistoryComponent implements OnInit {
   constructor(private $http: BbqApiService) {}
   items: Array<any> = [];
-  API_URL = 'http://localhost:3001/api/v1/'
   user: Object = {};
   pageSize = 5;
   headers = [
@@ -84,7 +83,7 @@ export class ContractHistoryComponent implements OnInit {
       };
     }
 
-    this.$http.get(this.API_URL+"contract", query).subscribe(res => {
+    this.$http.get("contract", query).subscribe(res => {
       this.items = res;
     });
   }

@@ -18,7 +18,6 @@ export class RoleModalComponent implements OnInit {
 
   // tplModal: NzModalRef;
   selectedPermission = [];
-  API_URL = "http://localhost:3001/api/v1/";
 
   constructor(
     private $http: BbqApiService,
@@ -38,7 +37,7 @@ export class RoleModalComponent implements OnInit {
         Object.assign(this.currentRole, {permission})
 
         if(this.currentRole.permission && this.currentRole.permission.length) {
-          this.$http.updateOrCreate(this.API_URL+"role", this.currentRole).subscribe(res => {
+          this.$http.updateOrCreate("role", this.currentRole).subscribe(res => {
             this.tplModal.destroy();
             const successMessage = this.currentRole.id
               ? "Role successfully updated"
